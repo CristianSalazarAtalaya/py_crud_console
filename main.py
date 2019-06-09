@@ -24,10 +24,6 @@ def  _get_client_name():
 
     return client_name
 
-def _add_coma():
-    global clients
-    clients +=','
-
 def list_clients():
     global clients
     for idx, client in enumerate(clients):
@@ -37,8 +33,7 @@ def list_clients():
 
 def search_client(client_name):
     global clients
-    client_list = clients.split(',')
-    for client in client_list:
+    for client in clients:
         if client != client_name:
             continue
         else:
@@ -49,7 +44,8 @@ def search_client(client_name):
 def update_client(client_name,update_client_name):
     global clients
     if client_name in clients:
-        clients = clients.replace( client_name +',', update_client_name)
+        index = clients.index(client_name)
+        clients[index] = update_client_name
     else:
         print('Client is not exist in clients list')
 
@@ -57,7 +53,7 @@ def update_client(client_name,update_client_name):
 def delete_clients(client_name):
     global clients
     if client_name in clients:
-        clients = clients.replace(client_name +',' , '')
+        clients.remove(client_name)
     else:
         print('Client is not in clients list')
 
