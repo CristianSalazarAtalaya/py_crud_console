@@ -2,14 +2,36 @@
 import sys
 
 #clients = 'pablo,ricardo,'
-clients = ['pablo', 'rikardo']
+#clients = ['pablo', 'rikardo']
 
-def create_client(client_name):
+clients = [
+    {
+        'name': 'Pablo',
+        'company':'Google',
+        'email': 'mira@gmail.com',
+        'position':'Software engineer'
+    },
+    {
+        'name': 'Ricardo',
+        'company':'Facebook',
+        'email': 'ricardo@gmail.com',
+        'position':'Data engineer'
+    }
+]
+
+def create_client(client):
     global clients #para poer utilizar las variables globales
-    if client_name not in clients:
-        clients.append(client_name)
+    if client not in clients:
+        clients.append(client)
     else:
         print('Client already is in the cliente \'s list')
+
+def _get_client_field(field_name):
+    field = None
+
+    while not field:
+        field  = input('What is he client {}?'.format(field_name))
+    return field
 
 def  _get_client_name():
     client_name = None
@@ -27,7 +49,7 @@ def  _get_client_name():
 def list_clients():
     global clients
     for idx, client in enumerate(clients):
-        print('{}:{}'.format(idx,client))
+        print('{}:{}'.format(idx,client['name']))
     
 
 
@@ -73,8 +95,17 @@ if __name__ == '__main__':
     command = command.upper()
 
     if command =='C':
-        client_name = _get_client_name()
-        create_client(client_name)
+        client = {
+            'name' : _get_client_field('name'),
+            'company' : _get_client_field('company'),
+            'email' : _get_client_field('email'),
+            'position' : _get_client_field('position')
+        }
+
+
+
+        #client_name = _get_client_name()
+        create_client(client)
         list_clients()
     elif command == 'D':
         client_name = _get_client_name()
