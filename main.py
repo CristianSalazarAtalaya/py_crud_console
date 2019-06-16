@@ -49,7 +49,14 @@ def  _get_client_name():
 def list_clients():
     global clients
     for idx, client in enumerate(clients):
-        print('{}:{}'.format(idx,client['name']))
+        #print('{}:{}'.format(idx,client['name']))
+        print('{uid} | {name} | {company} | {email} | {position}'.format(
+            uid=idx,
+            name = client['name'],
+            company = client['company'],
+            email = client['email'],
+            position = client['position']
+        ))
     
 
 
